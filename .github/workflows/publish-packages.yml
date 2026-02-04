@@ -1,6 +1,12 @@
 name: Publish Packages
 # Reference: https://github.com/Seneca-CDOT/telescope/blob/master/.github/workflows/release.yml
 on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Test scenario tags"
+        required: false
+        type: boolean
   push:
     # Sequence of patterns matched against refs/tags
     tags: main
