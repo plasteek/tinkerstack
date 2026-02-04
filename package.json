@@ -1,0 +1,23 @@
+{
+  "name": "tinkerstack",
+  "version": "0.0.0",
+  "description": "A collection of barely-functional/quickly drafted tools for the clinically insane",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "keywords": [
+    "tinkerstack",
+    "Nest"
+  ],
+  "author": "@plasteek",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "turbo": "^2.8.3"
+  },
+  "packageManager": "pnpm@10.0.0"
+}
