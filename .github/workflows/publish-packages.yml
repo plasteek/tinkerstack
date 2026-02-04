@@ -15,14 +15,15 @@ on:
   #       # For more details, see https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
   #       # and https://docs.npmjs.com/about-semantic-versioning
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   publish:
     name: Publish to pnpm
     container: node:20
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
