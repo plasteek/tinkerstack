@@ -42,6 +42,7 @@ jobs:
         run: pnpm install
 
       - name: "Publish to NPM"
-        run: pnpm -r publish --no-git-checks --access=public --provenance
+        run: pnpm -r publish --no-git-checks --access=public
+        # Should use OIDC but I tried man, nothing is working
         env:
-          NPM_CONFIG_PROVENANCE: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
