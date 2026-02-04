@@ -43,3 +43,5 @@ jobs:
 
       - name: "Publish to NPM"
         run: pnpm -r publish --no-git-checks --access=public --provenance
+        env:
+          NPM_CONFIG_PROVENANCE: true
