@@ -5,6 +5,7 @@ run-name: Publish Packages
 on:
   workflow_dispatch:
   push:
+    # TODO: this should probably be a release branch or something eh
     # Sequence of patterns matched against refs/tags
     branches: main
   # push:
@@ -27,8 +28,6 @@ jobs:
 
       - name: Initialize pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Setup NodeJS
         uses: actions/setup-node@v4
