@@ -23,12 +23,13 @@ export class GraphQLAnnotationMeta {
   resolvers: GraphQLResolversAnnotations;
 }
 
+export const ANNOTATION_QUERY_NAME = "_annotations";
+
 @Resolver()
 @Injectable()
 export class GraphQLAnnotationResolver implements OnModuleInit {
   private _logger = new Logger("GraphQLAnnotationModule");
 
-  public static QUERY_NAME = "_annotations";
   constructor(
     private readonly metadataScanner: MetadataScanner,
     private readonly resolverDiscoveryService: ResolverDiscoveryService,
@@ -37,7 +38,7 @@ export class GraphQLAnnotationResolver implements OnModuleInit {
   ) {}
 
   @Query(() => GraphQLAnnotationMeta, {
-    name: GraphQLAnnotationResolver.QUERY_NAME,
+    name: ANNOTATION_QUERY_NAME,
   })
   async getGraphQLAnnotations() {
     return {
