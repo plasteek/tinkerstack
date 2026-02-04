@@ -1,6 +1,6 @@
 {
   "name": "tinkerstack",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A collection of barely-functional/quickly drafted tools for the clinically insane",
   "private": true,
   "scripts": {
