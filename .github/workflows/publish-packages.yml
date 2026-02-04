@@ -1,10 +1,6 @@
 name: Publish Packages
 run-name: Publish Packages
 
-permissions:
-  id-token: write
-  contents: read
-
 # Reference: https://github.com/Seneca-CDOT/telescope/blob/master/.github/workflows/release.yml
 on:
   workflow_dispatch:
@@ -24,6 +20,9 @@ jobs:
     name: Publish to pnpm
     container: node:20
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Clone Repo
         uses: actions/checkout@v3
