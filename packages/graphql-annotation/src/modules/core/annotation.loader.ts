@@ -272,7 +272,6 @@ class GraphQLAnnotationResolverParamsFactory implements ParamsFactory {
     argsContext: GraphQLAnnotationResolverArgs,
   ) {
     if (!argsContext) return null;
-    console.log(type, possibleKey, argsContext);
 
     const args = {
       parentValue: argsContext[0],
