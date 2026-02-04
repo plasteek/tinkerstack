@@ -23,6 +23,7 @@ import {
   ResolverName,
 } from "./annotation.constants";
 import {
+  ANNOTATION_QUERY_NAME,
   GraphQLAnnotationMeta,
   GraphQLAnnotationResolver,
 } from "./annotation.resolver";
@@ -123,8 +124,7 @@ export class GraphQLAnnotatedSchemaLoader {
         // Remove `_annotations` from being merged to main schema
         loaded.subschema.transforms = [
           new FilterRootFields(
-            (op, fieldName) =>
-              !fieldName.endsWith(GraphQLAnnotationResolver.QUERY_NAME),
+            (op, fieldName) => !fieldName.endsWith(ANNOTATION_QUERY_NAME),
           ),
         ];
 
@@ -153,11 +153,11 @@ export class GraphQLAnnotatedSchemaLoader {
 
     try {
       type ExpectedResult = {
-        [GraphQLAnnotationResolver.QUERY_NAME]: GraphQLAnnotationMeta;
+        [ANNOTATION_QUERY_NAME]: GraphQLAnnotationMeta;
       };
       const res = await client.rawRequest<ExpectedResult>(`
         query IntrospectAnnotations {
-          ${GraphQLAnnotationResolver.QUERY_NAME} {
+          ${ANNOTATION_QUERY_NAME} {
             name
             resolvers
           }
@@ -165,7 +165,7 @@ export class GraphQLAnnotatedSchemaLoader {
       `);
 
       this._logger.log(`Loaded annotations for ${url}`);
-      return res.data[GraphQLAnnotationResolver.QUERY_NAME];
+      return res.data[ANNOTATION_QUERY_NAME];
     } catch (err) {
       this._logger.warn(`Failed to load annotations at ${url}, assuming empty`);
       return {} as GraphQLAnnotationMeta;
