@@ -1,5 +1,5 @@
 import { SetMetadata } from "@nestjs/common";
-import { Args } from "@nestjs/graphql";
+import { Args, ArgsOptions } from "@nestjs/graphql";
 import "reflect-metadata";
 import {
   ANNOTATION_METADATA,
@@ -42,7 +42,12 @@ export function Annotate(
  */
 export function Annotate(
   name: string,
-  opts?: { data?: Record<string, any>; parameter?: string },
+  opts?: {
+    data?: Record<string, any>;
+    parameter?: string;
+    description?: string;
+    type?: () => any;
+  },
 ): MethodDecorator & ParameterDecorator {
   const annotationName = name;
   const annotationData = opts?.data;
@@ -79,7 +84,11 @@ export function Annotate(
             `Unable to apply annotation "${annotationName}". Parameter name not specified.`,
           );
 
-        Args(paramName)(target, propertyKey, paramIndex);
+        Args({
+          name: paramName,
+          type: opts?.type,
+          description: opts?.description,
+        })(target, propertyKey, paramIndex);
         _updateAnnotation(
           target.constructor,
           (meta) => ({
