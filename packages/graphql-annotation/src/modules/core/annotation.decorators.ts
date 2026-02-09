@@ -30,7 +30,12 @@ export function Annotate(
  */
 export function Annotate(
   name: string,
-  opts: { data?: Record<string, any>; parameter: string },
+  opts: {
+    data?: Record<string, any>;
+    parameter: string;
+    description?: string;
+    type?: () => any;
+  },
 ): ParameterDecorator & MethodDecorator;
 /**
  * Applies an annotation to a Query or Mutation handler or parameter for
